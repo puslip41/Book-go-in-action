@@ -4,8 +4,8 @@ import (
 	"log"
 	"os"
 
-	_ "puslip41/book-go-in-action/chapter2/matchers"
-	"puslip41/book-go-in-action/chapter2/search"
+	_ "puslip41/go_in_action/chapter2/matchers"
+	"puslip41/go_in_action/chapter2/search"
 )
 
 func init() {
@@ -13,5 +13,5 @@ func init() {
 }
 
 func main() {
-	search.Run("Sherlock Holmes")
+	search.Run("Nikolas")
 }

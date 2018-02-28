@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 
-var matchers = make(map[string]Matcher)
+var matchers = make(map[string]Searcher)
 
 func Run(searchTerm string) {
 	feeds, err := RetrieveFeeds()
@@ -24,7 +24,7 @@ func Run(searchTerm string) {
 			matcher = matchers["default"]
 		}
 
-		go func(matcher Matcher, feed *Feed) {
+		go func(matcher Searcher, feed *Feed) {
 			Match(matcher, feed, searchTerm, results)
 			waitGroup.Done()
 		}(matcher, feed)
@@ -39,7 +39,7 @@ func Run(searchTerm string) {
 	Display(results)
 }
 
-func Register(feedType string, matcher Matcher) {
+func Register(feedType string, matcher Searcher) {
 	if _, exists := matchers[feedType]; exists {
 		log.Fatalln(feedType, "검색기가 이미 등록되었습니다.")
 	}
